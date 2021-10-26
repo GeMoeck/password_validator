@@ -1,52 +1,27 @@
+from checks import *
+
 password = input("Bitte Password eingeben: ")
 symbol_list = ["-","?","!","#","_"]
+length = 8
 
-lower_check = False
-upper_check = False
-digit_check = False
-symbol_check = False
+lower_check = function_lowercase(password)
+upper_check = function_uppercase(password)
+digit_check = function_digit(password)
+symbol_check = function_symbol(password, symbol_list)
+length_check = function_minlength(password, length)
 
-def function_lowercase():
-    for character in password:
-        if character.islower():
-            return True 
-    return False    
-
-def function_uppercase():
-    for character in password:
-        if character.isupper():
-            return True
-    return False
-
-def function_digit():
-    for character in password:
-        if character.isdigit():
-            return True
-    return False
-
-def function_symbol():
-    for character in password:
-        if character in symbol_list:
-            return True
-    return False
-
-lower_check = function_lowercase()
-upper_check = function_uppercase()
-digit_check = function_digit()
-symbol_check = function_symbol()
-
-if len(password) < 8:
+if not length_check:
     print("Du brauchst mindestens 8 Zeichen")
 else:
-    if lower_check == False:
+    if not lower_check:
         print("Mindestens ein Kleinbuchstabe")
-    if upper_check == False:
+    if not upper_check:
         print("Mindestens ein Großbuchstabe")
-    if digit_check == False:
+    if not digit_check:
         print("Mindestens eine Zahl")
-    if symbol_check == False:
+    if not symbol_check:
         print("Mindestens ein Sonderzeichen")
-    if lower_check == True and upper_check == True and digit_check == True and symbol_check ==True:
+    if lower_check and upper_check and digit_check and symbol_check:
         print("Dein Passwort ist ausreichend sicher")
 
 
